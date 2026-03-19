@@ -142,6 +142,8 @@ def app(environ, start_response):
     init_db()
     path = environ.get("PATH_INFO", "/")
     method = environ.get("REQUEST_METHOD", "GET")
+    if method == "HEAD":
+        method = "GET"
 
     if path == "/static/style.css":
         css = STYLE_PATH.read_bytes() if STYLE_PATH.exists() else b""
