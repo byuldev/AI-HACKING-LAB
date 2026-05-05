@@ -19,21 +19,15 @@ PROBLEMS: list[dict[str, str | int]] = [
     {"area": "웹 공격(Web)", "title": "SQL 인젝션 - 로그인 우회", "description": "취약한 로그인 폼에서 인증을 우회해 관리자 페이지에 접근하세요.", "points": 80, "flag": "FLAG{web_sql_login_bypass}"},
     {"area": "웹 공격(Web)", "title": "SQL 인젝션 - 데이터 추출", "description": "사용자 테이블에서 admin 계정의 해시값을 추출하세요.", "points": 90, "flag": "FLAG{web_sql_data_dump}"},
     {"area": "웹 공격(Web)", "title": "XSS 세션 탈취", "description": "저장형 XSS를 이용해 관리자 쿠키를 획득하세요.", "points": 90, "flag": "FLAG{web_stored_xss_cookie}"},
-    {"area": "인증/권한(Auth)", "title": "약한 비밀번호 크래킹", "description": "제공된 해시 파일에서 사용자 비밀번호 1개를 복구하세요.", "points": 70, "flag": "FLAG{auth_weak_password}"},
-    {"area": "인증/권한(Auth)", "title": "JWT 위변조", "description": "취약한 JWT 검증을 악용해 admin 권한 토큰을 생성하세요.", "points": 100, "flag": "FLAG{auth_jwt_forge}"},
-    {"area": "인증/권한(Auth)", "title": "권한상승 sudo", "description": "취약한 sudoers 설정을 이용해 root 쉘을 획득하세요.", "points": 110, "flag": "FLAG{auth_sudo_privesc}"},
-    {"area": "네트워크(Network)", "title": "평문 자격증명", "description": "캡처 파일에서 평문으로 전송된 계정 정보를 추출하세요.", "points": 60, "flag": "FLAG{net_plain_credentials}"},
-    {"area": "네트워크(Network)", "title": "DNS 터널링 흔적", "description": "비정상 DNS 쿼리 패턴을 찾아 C2 도메인을 식별하세요.", "points": 80, "flag": "FLAG{net_dns_tunnel}"},
-    {"area": "네트워크(Network)", "title": "MITM 탐지", "description": "ARP 스푸핑이 발생한 증거(공격자 MAC)를 찾으세요.", "points": 90, "flag": "FLAG{net_mitm_detected}"},
-    {"area": "악성코드 분석(Malware)", "title": "의심 스크립트 IOC", "description": "샘플 스크립트에서 C2 URL을 추출하세요.", "points": 80, "flag": "FLAG{mal_ioc_c2_url}"},
-    {"area": "악성코드 분석(Malware)", "title": "난독화 해제", "description": "난독화된 PowerShell에서 실행 명령의 원문을 복구하세요.", "points": 100, "flag": "FLAG{mal_deobfuscation}"},
-    {"area": "악성코드 분석(Malware)", "title": "지속성 기법 식별", "description": "샘플에서 사용된 지속성(Persistence) 기법을 확인하세요.", "points": 90, "flag": "FLAG{mal_persistence_technique}"},
-    {"area": "사고대응(IR)", "title": "침해 시작 시각", "description": "로그를 분석해 최초 침해 시각(UTC)을 제출하세요.", "points": 70, "flag": "FLAG{ir_initial_compromise_time}"},
-    {"area": "사고대응(IR)", "title": "침해 경로 타임라인", "description": "웹셸 업로드부터 권한상승까지 핵심 단계 3개를 정리하세요.", "points": 90, "flag": "FLAG{ir_attack_timeline}"},
-    {"area": "사고대응(IR)", "title": "영향 범위 식별", "description": "유출된 데이터셋 이름과 건수를 찾아 제출하세요.", "points": 100, "flag": "FLAG{ir_impact_scope}"},
-    {"area": "방어/하드닝(Defense)", "title": "WAF 룰 작성", "description": "SQLi 패턴을 차단하는 기본 룰을 적용하고 테스트하세요.", "points": 80, "flag": "FLAG{def_waf_rule_applied}"},
-    {"area": "방어/하드닝(Defense)", "title": "로그인 보호", "description": "무차별 대입 공격 방지를 위한 지연/잠금 정책을 적용하세요.", "points": 80, "flag": "FLAG{def_bruteforce_blocked}"},
-    {"area": "방어/하드닝(Defense)", "title": "시크릿 관리", "description": "코드 내 하드코딩된 API 키를 안전한 방식으로 교체하세요.", "points": 90, "flag": "FLAG{def_secret_rotation}"},
+    {"area": "AI 보안(AI Security)", "title": "프롬프트 인젝션 필터링", "description": "챗봇 시스템 프롬프트 유출 시도를 탐지하고 차단 규칙을 적용하세요.", "points": 100, "flag": "FLAG{ai_prompt_injection_defense}"},
+    {"area": "AI 보안(AI Security)", "title": "RAG 데이터 오염 분석", "description": "지식베이스 문서 중 악성 주입 문장을 찾아 격리하세요.", "points": 110, "flag": "FLAG{ai_rag_poisoning}"},
+    {"area": "AI 보안(AI Security)", "title": "모델 출력 검증", "description": "민감정보가 포함된 응답을 DLP 정책으로 차단하고 로그를 남기세요.", "points": 100, "flag": "FLAG{ai_output_guardrail}"},
+    {"area": "Shadow IT", "title": "비인가 SaaS 식별", "description": "프록시 로그에서 승인되지 않은 생성형 AI SaaS 사용 패턴을 탐지하세요.", "points": 90, "flag": "FLAG{shadowit_unsanctioned_saas}"},
+    {"area": "Shadow IT", "title": "토큰 노출 대응", "description": "개인 계정으로 발급된 API 키의 노출 지점을 추적하고 폐기 절차를 수행하세요.", "points": 100, "flag": "FLAG{shadowit_token_rotation}"},
+    {"area": "Shadow IT", "title": "SaaS 데이터 반출 통제", "description": "CASB 규칙을 작성해 민감 문서 업로드를 차단하세요.", "points": 110, "flag": "FLAG{shadowit_casb_policy}"},
+    {"area": "미토스(MITOS)", "title": "MITOS 킬체인 매핑", "description": "시나리오 로그를 기반으로 MITOS 단계별 공격 행위를 매핑하세요.", "points": 100, "flag": "FLAG{mitos_killchain_map}"},
+    {"area": "미토스(MITOS)", "title": "MITOS 탐지 룰 튜닝", "description": "오탐을 줄이면서도 중요 이벤트를 놓치지 않는 탐지 임계치를 조정하세요.", "points": 110, "flag": "FLAG{mitos_detection_tuning}"},
+    {"area": "미토스(MITOS)", "title": "MITOS 대응 플레이북", "description": "초기 대응 15분 플레이북을 작성해 자동화 단계와 수동 단계를 분리하세요.", "points": 120, "flag": "FLAG{mitos_playbook}"},
 ]
 
 
@@ -157,11 +151,17 @@ def app(environ, start_response):
         register_url = f"http://{host}/register"
         qr_image = f"https://quickchart.io/qr?size=280&text={register_url}"
         body = f"""
-<section class='card'><h2>공격/방어 실습 워크숍</h2>
-<p>QR 등록 후 임계치 도달 시 자동 시작됩니다.</p>
-<ul><li>현재 등록: <strong>{current}명</strong></li><li>시작 기준: <strong>{threshold}명</strong></li><li>상태: <strong>{'진행중' if started else '대기중'}</strong></li></ul></section>
-<section class='grid'><div class='card'><h3>등록 QR</h3><img class='qr' src='{qr_image}' alt='QR'><p><a href='{register_url}'>직접 등록 링크 열기</a></p></div>
-<div class='card'><h3>안내</h3><ol><li>QR 스캔</li><li>대기열 자동 집계</li><li>20명 내외 도달 시 자동 시작</li></ol></div></section>"""
+<section class='hero card'>
+  <p class='eyebrow'>AI-HACKING-LAB 2026</p>
+  <h2>더 인터랙티브한 AI 보안 실습 플랫폼</h2>
+  <p>기초부터 실전까지 단계형 러닝패스로 구성된 해킹/방어 실습입니다. 미토스(MITOS), AI 보안, Shadow IT 시나리오를 포함해 누구나 쉽게 학습할 수 있습니다.</p>
+  <div class='pill-row'><span class='pill'>Beginner Friendly</span><span class='pill'>Hands-on Labs</span><span class='pill'>MITOS + AI + Shadow IT</span></div>
+</section>
+<section class='grid'>
+  <div class='card'><h3>실시간 대기 현황</h3><ul><li>현재 등록: <strong>{current}명</strong></li><li>시작 기준: <strong>{threshold}명</strong></li><li>상태: <strong>{'진행중' if started else '대기중'}</strong></li></ul><progress value='{current}' max='{threshold}'></progress></div>
+  <div class='card'><h3>빠른 등록</h3><img class='qr' src='{qr_image}' alt='QR'><p><a href='{register_url}'>직접 등록 링크 열기</a></p></div>
+  <div class='card'><h3>러닝 패스</h3><ol><li>기초 정찰/웹 취약점</li><li>AI·Shadow IT 공격/방어</li><li>MITOS 탐지 및 대응 자동화</li></ol></div>
+</section>"""
         return response(start_response, "200 OK", html_page("워크숍 대기실", body))
 
     if path == "/register" and method == "GET":
@@ -236,7 +236,8 @@ poll();
         grouped: dict[str, list[sqlite3.Row]] = {}
         for row in rows:
             grouped.setdefault(row[0], []).append(row)
-        chunks = ["<section class='card'><h2>실습 문제 목록 (총 21문제)</h2><p>각 영역별 3문제로 구성.</p></section>"]
+        total = len(rows)
+        chunks = [f"<section class='hero card'><p class='eyebrow'>Interactive Labs</p><h2>실습 문제 목록 (총 {total}문제)</h2><p>영역별 난이도 기반으로 구성된 실전형 미션입니다.</p></section>"]
         for area, items in grouped.items():
             chunks.append(f"<section class='card'><h3>{html.escape(area)}</h3><div class='challenge-list'>")
             for item in items:
